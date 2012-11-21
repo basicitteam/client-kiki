@@ -32,6 +32,12 @@ Class M_kelas extends CI_Model
 		return $query->num_rows();	
 	}
 
+	public function get_total_result()
+	{
+		$query = $this->db->get('kelas');
+		return $query->result_array();	
+	}
+
 	public function get_kelas($id_kelas)
 	{
 		$query = $this->db->get_where('kelas', array('id_kelas' => $id_kelas));

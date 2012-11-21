@@ -13,17 +13,125 @@ Class Admin extends CI_Controller
 
     public function index()
     {
-    	redirect('admin/siswa');
+    	$data['menu'] = 'home';
+        $this->load->view('templates/header');
+        $this->load->view('home');
+        $this->load->view('templates/footer');
     }
 
     //kelola siswa
     public function siswa()
     {
+        $data['data_siswa'] = $this->M_siswa->get_siswa();
+        $data['kelas_data'] = $this->M_kelas->get_total_result();
         $data['menu'] = 'siswa';
         $this->load->view('templates/header',$data);
-        $this->load->view('admin/siswa');
+        $this->load->view('admin/siswa',$data);
         $this->load->view('templates/footer');
     }
+    
+    public function cari_siswa()
+    {
+        $nis = $this->input->get('nis');
+        if($this->M_siswa->is_siswa_exist($nis))
+        {
+            $data['siswa'] = $this->M_siswa->get($nis);
+            $data['kelas_data'] = $this->M_kelas->get_total_result();
+            $this->load->view('templates/header',$data);
+            $this->load->view('admin/by_nis',$data);
+            $this->load->view('templates/footer');
+        }
+        else
+        {
+            echo '
+            <script type="text/javascript">
+            alert("Nis tidak terdaftar");
+            document.location = "'.site_url('admin/siswa').'";
+            </script>
+            ';
+        }
+    }
+    
+    public function add_siswa_manual()
+    {
+        if($this->input->post('btn') == 'Tambah Siswa')
+        {
+            $nis = $this->input->post('nis');
+            $nama_siswa = $this->input->post('nama');
+            $jns_kelamin = $this->input->post('jns_kelamin');
+            $alamat = $this->input->post('alamat');
+            $kelas = $this->input->post('kelas');
+            $username = $this->input->post('username');
+            $password = $this->input->post('password');
+            $siswa = array(
+            'nis' => $nis,
+            'nama_siswa' => $nama_siswa,
+            'jns_kelamin' => $jns_kelamin,
+            'alamat' => $alamat,
+            'id_kelas' => $kelas,
+            'username' => $username,
+            'password' => $password
+            );
+            if($this->M_siswa->insert($siswa))
+            {
+                $this->session->set_flashdata('msg', 'Siswa <b>'.$this->input->post('nama').'</b> Berhasil Ditambahkan!');
+                redirect('admin/siswa');
+            }
+            else
+            {
+                $this->session->set_flashdata('msg', 'Siswa '.$this->input->post('nama').' Gagal Ditambahkan!');
+                redirect('admin/siswa');   
+            }
+        }
+    }
+    
+    public function delete_siswa()
+    {
+        $this->M_siswa->delete($this->input->post('nis'));
+        $this->session->set_flashdata('msg', 'Siswa berhasil di hapus');
+        redirect('admin/siswa');
+    }
+    
+    public function edit_siswa($nis)
+    {
+        $data['siswa'] = $this->M_siswa->get($nis);
+        $data['kelas_data'] = $this->M_kelas->get_total_result();
+        $data['menu'] = 'siswa';
+        $this->load->view('templates/header',$data);
+        $this->load->view('admin/edit_siswa',$data);
+        $this->load->view('templates/footer');
+    }
+    
+    public function update_siswa()
+    {
+        if($this->input->post('btn') == 'Update Siswa')
+        {
+            $nis = $this->input->post('nis');
+            $nama_siswa = $this->input->post('nama');
+            $jns_kelamin = $this->input->post('jns_kelamin');
+            $alamat = $this->input->post('alamat');
+            $kelas = $this->input->post('kelas');
+            $username = $this->input->post('username');
+            $password = $this->input->post('password');
+            $siswa = array(
+            'nis' => $nis,
+            'nama_siswa' => $nama_siswa,
+            'jns_kelamin' => $jns_kelamin,
+            'alamat' => $alamat,
+            'id_kelas' => $kelas,
+            'username' => $username,
+            'password' => $password
+            );
+            $this->M_siswa->update($this->input->post('nis'),$siswa);
+            $this->session->set_flashdata('msg', 'Siswa <b>'.$this->input->post('nama').'</b> berhasil di update');
+        }
+        else
+        {
+            $this->session->set_flashdata('msg', 'Siswa <b>'.$this->input->post('nama').'</b> gagal di update');   
+        }
+        redirect('admin/siswa');
+    }
+    
     //end kelola siswa
 
     //kelola kelas

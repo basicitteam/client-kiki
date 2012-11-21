@@ -3,7 +3,7 @@
 						<div class="alert alert-info">
 						<div class="row-fluid">
 						<div class="span10">
-							<form class="form-inline" id="input-nis" action="<?php echo site_url('admin/cari_siswa');?>" method="get">
+							<form class="form-inline" id="input-nis" action="<?php echo site_url('admin/siswa_nis');?>" method="get">
 								<fieldset>
 								<div class="control-group">
 								<div class="controls">
@@ -42,37 +42,28 @@
 										  </tr>
 										</thead>
 										<tbody>
-											<?php
-											$no = 1;
-											foreach ($data_siswa as $value) 
-											{
-											?>
 											<tr>
-											<td><?php echo $no; ?>.</td>
-											<td><?php echo $value['nis'] ?></td>
-											<td><?php echo $value['nama_siswa'] ?></td>
-											<td><?php echo $value['jns_kelamin'] ?></td>
-											<td><?php echo $value['alamat'] ?></td>
-											<td><?php echo $value['kelas'] ?></td>
-											<td><?php echo $value['username'] ?></td>
-											<td><?php echo $value['password'] ?></td>
+											<td>1.</td>
+											<td><?php echo $siswa['nis'] ?></td>
+											<td><?php echo $siswa['nama_siswa'] ?></td>
+											<td><?php echo $siswa['jns_kelamin'] ?></td>
+											<td><?php echo $siswa['alamat'] ?></td>
+											<td><?php echo $siswa['kelas'] ?></td>
+											<td><?php echo $siswa['username'] ?></td>
+											<td><?php echo $siswa['password'] ?></td>
 											<td>
-											<a class="btn btn-primary" href="<?php echo site_url('admin/edit_siswa/'.$value['nis']); ?>">
+											<a class="btn btn-primary" href="<?php echo site_url('admin/cari_siswa/'.$siswa['nis']); ?>">
 											<i class="icon-edit"></i>
 											Edit
 											</a>
 											</td>
 											<td>
 											<form method="post" action="<?php echo site_url('admin/delete_siswa/'); ?>">
-												<input type="hidden" name="nis" value="<?php echo $value['nis']; ?>"/>
+												<input type="hidden" name="nis" value="<?php echo $siswa['nis']; ?>"/>
 												<button type="submit" class="btn btn-danger"><i class="icon-remove"></i>Delete</button>
 												</form>
 											</td>
 										  </tr>
-										  <?php
-										  	$no++;
-											}
-											?>
 										</tbody>
 									</table>
 								<div class="pagination">
