@@ -40,18 +40,6 @@
 									</select>  
 								</div>  
 						</div>
-						<div class="control-group">
-						<label class="control-label" for="user_id">Username</label>
-						<div class="controls">
-							<input type="text" class="input-xlarge" id="username" name="username" value="<?php echo $siswa['username'];?>">
-						</div>
-						</div>
-						<div class="control-group">
-						<label class="control-label" for="password">Password</label>
-						<div class="controls">
-							<input type="password" class="input-xlarge" id="password" name="password" value="<?php echo $siswa['password'];?>">
-						</div>
-						</div>
 						<div class="form-actions alert alert-info">
 						<input type="submit" name="btn" value="Update Siswa" class="btn btn-primary"/>
 						<a href="<?php echo site_url('admin/siswa'); ?>" class="btn btn-warning">Cancel</a>

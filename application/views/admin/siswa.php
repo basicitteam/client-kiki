@@ -33,11 +33,7 @@
 											<th><center>No.</center></th>
 											<th><center>NIS</center></th>
 											<th><center>Nama</center></th>
-											<th><center>Jenis Kelamin</center></th>
-											<th><center>Alamat</center></th>
 											<th><center>Kelas</center></th>
-											<th><center>User ID</center></th>
-											<th><center>Password</center></th>
 											<th colspan='2'><center>Action</center></th>
 										  </tr>
 										</thead>
@@ -51,11 +47,7 @@
 											<td><?php echo $no; ?>.</td>
 											<td><?php echo $value['nis'] ?></td>
 											<td><?php echo $value['nama_siswa'] ?></td>
-											<td><?php echo $value['jns_kelamin'] ?></td>
-											<td><?php echo $value['alamat'] ?></td>
 											<td><?php echo $value['kelas'] ?></td>
-											<td><?php echo $value['username'] ?></td>
-											<td><?php echo $value['password'] ?></td>
 											<td>
 											<a class="btn btn-primary" href="<?php echo site_url('admin/edit_siswa/'.$value['nis']); ?>">
 											<i class="icon-edit"></i>
@@ -134,9 +126,9 @@
 							</div>
 							</div>
 							<div class="control-group">
-							<label class="control-label" for="username">Username</label>
+							<label class="control-label" for="foto">Foto</label>
 							<div class="controls">
-								<input type="text" class="input-xlarge" id="username" name="username">
+								<input name="userfile" class="input-file" id="fileInput" type="file">
 							</div>
 							</div>
 							<div class="control-group">

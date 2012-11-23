@@ -54,35 +54,49 @@ Class Admin extends CI_Controller
     
     public function add_siswa_manual()
     {
-        if($this->input->post('btn') == 'Tambah Siswa')
+        $config['upload_path'] = './assets/uploads/foto_siswa';
+        $config['allowed_types'] = 'gif|jpg|png';
+
+        $this->upload->initialize($config);
+
+        if($this->upload->do_upload())
         {
-            $nis = $this->input->post('nis');
-            $nama_siswa = $this->input->post('nama');
-            $jns_kelamin = $this->input->post('jns_kelamin');
-            $alamat = $this->input->post('alamat');
-            $kelas = $this->input->post('kelas');
-            $username = $this->input->post('username');
-            $password = $this->input->post('password');
-            $siswa = array(
-            'nis' => $nis,
-            'nama_siswa' => $nama_siswa,
-            'jns_kelamin' => $jns_kelamin,
-            'alamat' => $alamat,
-            'id_kelas' => $kelas,
-            'username' => $username,
-            'password' => $password
-            );
-            if($this->M_siswa->insert($siswa))
+            if($this->input->post('btn') == 'Tambah Siswa')
             {
-                $this->session->set_flashdata('msg', 'Siswa <b>'.$this->input->post('nama').'</b> Berhasil Ditambahkan!');
-                redirect('admin/siswa');
-            }
-            else
-            {
-                $this->session->set_flashdata('msg', 'Siswa '.$this->input->post('nama').' Gagal Ditambahkan!');
-                redirect('admin/siswa');   
+                $upload_data = $this->upload->data();
+                $nis = $this->input->post('nis');
+                $nama_siswa = $this->input->post('nama');
+                $jns_kelamin = $this->input->post('jns_kelamin');
+                $alamat = $this->input->post('alamat');
+                $kelas = $this->input->post('kelas');
+                $password = $this->input->post('password');
+                $siswa = array(
+                'nis' => $nis,
+                'nama_siswa' => $nama_siswa,
+                'jns_kelamin' => $jns_kelamin,
+                'alamat' => $alamat,
+                'id_kelas' => $kelas,
+                'foto' => $upload_data['file_name'],
+                'password' => md5($password)
+                );
+                    if($this->M_siswa->insert($siswa))
+                    {
+                        $this->session->set_flashdata('msg', 'Siswa <b>'.$this->input->post('nama').'</b> Berhasil Ditambahkan!');
+                        redirect('admin/siswa');
+                    }
+                    else
+                    {
+                        $this->session->set_flashdata('msg', 'Siswa '.$this->input->post('nama').' Gagal Ditambahkan!');
+                        redirect('admin/siswa');   
+                    }
             }
         }
+        else
+        {
+            $this->session->set_flashdata('msg', 'Upload foto gagal '.$this->upload->display_errors());
+            redirect('admin/siswa');   
+        }
+
     }
     
     public function delete_siswa()
@@ -311,10 +325,157 @@ Class Admin extends CI_Controller
     }
     //end kelola mata pelajaran
 
-    public function guru()
+    //kelola guru
+    public function guru($offset = 0)
     {
-        $this->load->view('templates/header');
-        $this->load->view('admin/guru');
+        $config['base_url'] = site_url('admin/guru');
+        $config['total_rows'] = count($this->M_guru->get());
+        $config['per_page'] = 10; 
+
+        $this->pagination->initialize($config);
+
+        $data['guru'] = $this->M_guru->get($offset, $config['per_page']);
+        $data['menu'] = 'guru';
+        $this->load->view('templates/header',$data);
+        $this->load->view('admin/guru',$data);
+        $this->load->view('templates/footer');
+    }
+
+    public function add_guru_manual()
+    {
+        $data['menu'] = 'guru';
+        $this->load->view('templates/header',$data);
+        $this->load->view('admin/tambah_guru_manual',$data);
+        $this->load->view('templates/footer');
+    }
+
+    public function proses_guru_manual()
+    {
+        $this->form_validation->set_rules('nip', 'NIP', 'required|min_length[5]|is_unique[guru.nip]|numeric');
+        $this->form_validation->set_rules('nama', 'Nama Guru', 'required|min_length[5]');
+        $this->form_validation->set_rules('telp', 'No Telp', 'required|min_length[5]|numeric');
+        $this->form_validation->set_rules('email', 'Email', 'required|min_length[5]|is_unique[guru.email]|valid_email');
+        $this->form_validation->set_rules('alamat', 'Alamat', 'required|min_length[5]');
+        $this->form_validation->set_rules('jns_kelamin', 'Jenis Kelamin', 'required');
+        $this->form_validation->set_rules('password', 'Password', 'required|min_length[5]');
+        if($this->form_validation->run())
+        {
+            $config['upload_path'] = './assets/uploads/foto_guru';
+            $config['allowed_types'] = 'gif|jpg|png';
+
+            $this->upload->initialize($config);
+
+            if($this->upload->do_upload())
+            {
+                //insert ke tabel guru
+                $upload_data = $this->upload->data();
+                $data = array(
+                'nama_guru' => $this->input->post('nama'),
+                'nip' => $this->input->post('nip'),
+                'no_telp' => $this->input->post('telp'),
+                'email' => $this->input->post('email'),
+                'foto' => $upload_data['file_name'],
+                'alamat' => $this->input->post('alamat'),
+                'jns_kelamin' => $this->input->post('jns_kelamin'),
+                'password' => md5($this->input->post('password'))
+                );
+                $this->M_guru->insert($data);
+                $this->session->set_flashdata('msg', 'Tambah Guru '.$this->input->post('nama').' Berhasil!');
+                redirect('admin/guru');
+            }
+            else
+            {
+                $this->session->set_flashdata('msg', 'Upload Foto Gagal!');
+                redirect('admin/guru');
+            }
+        }
+        else
+        {
+            $this->session->set_flashdata('msg', 'Tambah Guru gagal! Form ada yang kosong atau tidak sesuai.');
+            redirect('admin/guru');
+        }
+    }
+
+    public function edit_guru($id_guru)
+    {
+        $data['guru'] = $this->M_guru->get_guru_by_id($id_guru);
+        $data['menu'] = 'guru';
+        $this->load->view('templates/header',$data);
+        $this->load->view('admin/edit_guru',$data);
+        $this->load->view('templates/footer');
+    }
+
+    public function update_guru()
+    {
+        $this->form_validation->set_rules('nama', 'Nama Guru', 'required|min_length[5]');
+        $this->form_validation->set_rules('telp', 'No Telp', 'required|min_length[5]|numeric');
+        $this->form_validation->set_rules('email', 'Email', 'required|min_length[5]|valid_email');
+        $this->form_validation->set_rules('alamat', 'Alamat', 'required|min_length[5]');
+        $this->form_validation->set_rules('jns_kelamin', 'Jenis Kelamin', 'required');
+        if($this->form_validation->run())
+        {
+            //siapin data buat update
+            $data = array(
+            'nama_guru' => $this->input->post('nama'),
+            'no_telp' => $this->input->post('telp'),
+            'email' => $this->input->post('email'),
+            'alamat' => $this->input->post('alamat'),
+            'jns_kelamin' => $this->input->post('jns_kelamin')
+            );
+            $config['upload_path'] = './assets/uploads/foto_guru';
+            $config['allowed_types'] = 'gif|jpg|png';
+
+            $this->upload->initialize($config);
+
+            if($this->upload->do_upload())
+            {
+                $upload_data = $this->upload->data();
+                $data['foto'] = $upload_data['file_name'];
+            }//end upload
+            if($this->input->post('password'))
+            {
+                $data['password'] = md5($this->input->post('password'));
+            }
+            $this->M_guru->update($this->input->post('id_guru'),$data);
+            $this->session->set_flashdata('msg', 'Update Guru '.$this->input->post('nama').' Berhasil!');
+            redirect('admin/guru');                        
+        }
+        else
+        {
+            $this->session->set_flashdata('msg', 'Tambah Guru gagal! Form ada yang kosong atau tidak sesuai.');
+            redirect('admin/guru');
+        }
+    }
+
+    public function delete_guru()
+    {
+        $this->M_guru->delete($this->input->post('id_guru'));
+        $this->session->set_flashdata('msg', 'Guru berhasil di hapus.');
+        redirect('admin/guru');
+    }
+
+    public function add_guru_upload()
+    {
+        $data['menu'] = 'guru';
+        $this->load->view('templates/header',$data);
+        $this->load->view('admin/tambah_guru_upload');
+        $this->load->view('templates/footer');
+    }
+    //end kelola guru
+
+    public function set_siswa_mapel()
+    {
+        $data['menu'] = 'set_siswa_mapel';
+        $this->load->view('templates/header',$data);
+        echo 'kosong';
+        $this->load->view('templates/footer');
+    }
+
+    public function set_guru_mengajar()
+    {
+        $data['menu'] = 'set_guru_mengajar';
+        $this->load->view('templates/header',$data);
+        echo 'kosong';
         $this->load->view('templates/footer');
     }
 }

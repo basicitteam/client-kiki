@@ -31,6 +31,12 @@
 						</div>
 						</div>
 						<div class="control-group">
+						<label class="control-label" for="alamat">Foto</label>
+						<div class="controls">
+							<input name="userfile" class="input-file" id="fileInput" type="file">
+						</div>
+						</div>
+						<div class="control-group">
 						<label class="control-label" for="kelas">Kelas</label>
 						<div class="controls">
 								<select id="kelas" name="kelas">  
