@@ -8,6 +8,7 @@ Class M_mata_pelajaran extends CI_Model
 
 	public function get($offset = 0,$limit = 20)
 	{
+		$this->db->order_by("mapel", "asc");
 		$query = $this->db->get('mapel', $limit, $offset);
 		return $query->result_array();
 	}

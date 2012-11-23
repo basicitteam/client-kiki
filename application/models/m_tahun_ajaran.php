@@ -54,4 +54,10 @@ Class M_tahun_ajaran extends CI_Model
 		$this->db->delete('tahun_ajaran', array('id_tahun_ajaran' => $id_tahun_ajaran));
 		$this->db->delete('semester', array('id_tahun_ajaran' => $id_tahun_ajaran));
 	}
+
+	public function get_semester_aktif()
+	{
+		$query = $this->db->get_where('semester', array('status' => 1));
+		return $query->row_array();
+	}
 }
