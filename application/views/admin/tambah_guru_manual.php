@@ -2,7 +2,7 @@
 			<div id="main" class="alert alert-info">
 				<section>
 					<article>
-						<form class="form-horizontal" action="<?php echo site_url('guru/insert_guru_manual'); ?>" method="POST" enctype="multipart/form-data">
+						<form class="form-horizontal" action="<?php echo site_url('admin/proses_guru_manual'); ?>" method="POST" enctype="multipart/form-data">
 						<fieldset>
 						    <legend>Tambah Guru</legend>
 							<div class="control-group">
@@ -17,8 +17,14 @@
 						        <input type="text" class="input-xlarge" id="nama" name="nama">
 						    </div>
 						    </div>
+						     <div class="control-group">
+						    <label class="control-label" for="telp">Telepon/Hp</label>
+						    <div class="controls">
+						        <input type="text" class="input-large" id="telp" name="telp">
+						    </div>
+						    </div>
 							 <div class="control-group">
-						    <label class="control-label" for="nama">Email</label>
+						    <label class="control-label" for="email">Email</label>
 						    <div class="controls">
 						        <input type="text" class="input-large" id="email" name="email">
 						    </div>
@@ -42,24 +48,6 @@
 						        <textarea class="input-xlarge" id="alamat" rows="3" name="alamat"></textarea>
 						    </div>
 						    </div>
-							<div class="control-group">
-						    <label class="control-label" for="mapel">Mata Pelajaran</label>
-						    <div class="controls">
-									<select multiple="mapel" class="checkbox inline">
-									  <option>bahasa indonesia</option>
-									  <option>matematika</option>
-									  <option>Bahasa Inggris</option>
-									  <option>Ekonomi</option>
-									  <option>Fisika</option>
-									</select>
-						    </div>
-						    </div>
-							<div class="control-group">
-						    <label class="control-label" for="user_id">User id</label>
-						    <div class="controls">
-						        <input type="text" class="input-xlarge" id="user_id" name="user_id">
-						    </div>
-						    </div>
 						    <div class="control-group">
 						    <label class="control-label" for="password">Password</label>
 						    <div class="controls">
@@ -68,7 +56,7 @@
 						    </div>
 						    <div class="form-actions alert alert-info">
             				<input type="submit" class="btn btn-primary"/>
-            				<a href="<?php echo site_url('guru'); ?>" class="btn btn-warning">Cancel</a>
+            				<a href="<?php echo site_url('admin/guru'); ?>" class="btn btn-warning">Cancel</a>
           					</div>
 						</fieldset>
 						</form>
