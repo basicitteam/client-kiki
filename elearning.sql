@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 20, 2012 at 12:40 PM
+-- Generation Time: Nov 23, 2012 at 06:20 PM
 -- Server version: 5.5.25a
 -- PHP Version: 5.4.4
 
@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `el_sessions` (
 --
 
 INSERT INTO `el_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('cd7a2a0bc73ddbd49abfac0ea19dee9d', '0.0.0.0', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11', 1353411454, 'a:4:{s:9:"user_data";s:0:"";s:4:"nama";b:0;s:4:"role";s:5:"admin";s:9:"logged_in";b:1;}');
+('26abc187d17da1590325ca208242d7dc', '0.0.0.0', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11', 1353689639, 'a:4:{s:9:"user_data";s:0:"";s:4:"nama";b:0;s:4:"role";s:5:"admin";s:9:"logged_in";b:1;}');
 
 -- --------------------------------------------------------
 
@@ -85,7 +85,16 @@ CREATE TABLE IF NOT EXISTS `guru` (
   `password` varchar(255) NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_guru`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `guru`
+--
+
+INSERT INTO `guru` (`id_guru`, `nama_guru`, `nip`, `no_telp`, `email`, `foto`, `alamat`, `jns_kelamin`, `password`, `timestamp`) VALUES
+(2, 'Rogers Dwiputra1', '30209186', '089899702891', 'setiady.rogers281@gmail.com', 'Chrysanthemum.jpg', 'Baleendah1 Bandung', 'Laki - Laki', '7e78efd1807895e2d634ab3bbb6bc15e', '2012-11-23 02:46:10'),
+(4, 'tes cuma 1 mapel', '54321', '9823796', 'tes@cuma.satu', 'Penguins1.jpg', 'cuma tes 1 mapel doang', 'Perempuan', 'ab8305f74e02e0d0602892c06127abe7', '2012-11-23 03:04:27'),
+(5, 'coba nambah guru', '345678', '912830765', 'coba@tambah.guru', 'Penguins2.jpg', 'cobacoba nambah guru', 'Laki - Laki', '1621a5dc746d5d19665ed742b2ef9736', '2012-11-23 06:10:49');
 
 -- --------------------------------------------------------
 
@@ -113,7 +122,7 @@ CREATE TABLE IF NOT EXISTS `kelas` (
   `kelas` varchar(255) NOT NULL,
   `keterangan` text NOT NULL,
   PRIMARY KEY (`id_kelas`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `kelas`
@@ -122,8 +131,7 @@ CREATE TABLE IF NOT EXISTS `kelas` (
 INSERT INTO `kelas` (`id_kelas`, `kelas`, `keterangan`) VALUES
 (1, 'coba kelas pertama', ''),
 (2, 'tes kelas', ''),
-(3, 'asd', ''),
-(5, 'dsa', '');
+(3, 'asd', '');
 
 -- --------------------------------------------------------
 
@@ -134,9 +142,21 @@ INSERT INTO `kelas` (`id_kelas`, `kelas`, `keterangan`) VALUES
 CREATE TABLE IF NOT EXISTS `mapel` (
   `id_mapel` int(11) NOT NULL AUTO_INCREMENT,
   `mapel` varchar(255) NOT NULL,
-  `keterangan` text NOT NULL,
+  `keterangan` text,
   PRIMARY KEY (`id_mapel`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+
+--
+-- Dumping data for table `mapel`
+--
+
+INSERT INTO `mapel` (`id_mapel`, `mapel`, `keterangan`) VALUES
+(6, 'Biologi 1', NULL),
+(7, 'Matematika', NULL),
+(8, 'Fisika', NULL),
+(9, 'B. Indonesia', NULL),
+(10, 'Biologi 2', NULL),
+(11, 'Fisika 2', NULL);
 
 -- --------------------------------------------------------
 
@@ -221,7 +241,7 @@ CREATE TABLE IF NOT EXISTS `semester` (
   `semester` varchar(255) NOT NULL,
   `status` int(11) NOT NULL,
   PRIMARY KEY (`id_semester`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `semester`
@@ -229,7 +249,11 @@ CREATE TABLE IF NOT EXISTS `semester` (
 
 INSERT INTO `semester` (`id_semester`, `id_tahun_ajaran`, `semester`, `status`) VALUES
 (3, 9, 'Semester 1', 1),
-(4, 9, 'Semester 2', 0);
+(4, 9, 'Semester 2', 0),
+(7, 11, 'Semester 1', 0),
+(8, 11, 'Semester 2', 0),
+(9, 12, 'Semester 1', 0),
+(10, 12, 'Semester 2', 0);
 
 -- --------------------------------------------------------
 
@@ -274,14 +298,16 @@ CREATE TABLE IF NOT EXISTS `tahun_ajaran` (
   `tahun_ajaran` varchar(255) NOT NULL,
   `keterangan` text NOT NULL,
   PRIMARY KEY (`id_tahun_ajaran`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `tahun_ajaran`
 --
 
 INSERT INTO `tahun_ajaran` (`id_tahun_ajaran`, `tahun_ajaran`, `keterangan`) VALUES
-(9, '2012 - 2013', '');
+(9, '2012 - 2013', ''),
+(11, '2013 - 2014', ''),
+(12, '2014 - 2015', '');
 
 -- --------------------------------------------------------
 

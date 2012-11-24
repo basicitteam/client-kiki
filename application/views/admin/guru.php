@@ -30,7 +30,7 @@
 									?>
 									<tr>
 									<td><?php echo $key['nip']; ?></td>
-									<td><?php echo $key['nama_guru']; ?></td>
+									<td><a href="<?php echo site_url('admin/view_guru/'.$key['id_guru']); ?>"><?php echo $key['nama_guru']; ?></a></td>
 									<td>
 									<a class="btn btn-primary" href="<?php echo site_url('admin/edit_guru/'.$key['id_guru']); ?>">
 									<i class="icon-edit"></i>

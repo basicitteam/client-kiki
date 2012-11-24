@@ -145,6 +145,14 @@ Class Admin extends CI_Controller
         }
         redirect('admin/siswa');
     }
+
+    public function set_siswa_mapel()
+    {
+        $data['menu'] = 'set_siswa_mapel';
+        $this->load->view('templates/header',$data);
+        echo 'kosong';
+        $this->load->view('templates/footer');
+    }
     
     //end kelola siswa
 
@@ -454,6 +462,15 @@ Class Admin extends CI_Controller
         redirect('admin/guru');
     }
 
+    public function view_guru($id_guru)
+    {
+        $data['guru'] = $this->M_guru->get_guru_by_id($id_guru);
+        $data['menu'] = 'guru';
+        $this->load->view('templates/header',$data);
+        $this->load->view('admin/view_guru',$data);
+        $this->load->view('templates/footer');
+    }
+
     public function add_guru_upload()
     {
         $data['menu'] = 'guru';
@@ -463,19 +480,28 @@ Class Admin extends CI_Controller
     }
     //end kelola guru
 
-    public function set_siswa_mapel()
+    public function set_guru_mengajar()
     {
-        $data['menu'] = 'set_siswa_mapel';
+        $data['mengajar'] = $this->M_guru->get_mengajar();
+        $data['menu'] = 'set_guru_mengajar';
         $this->load->view('templates/header',$data);
-        echo 'kosong';
+        $this->load->view('admin/mengajar',$data);
         $this->load->view('templates/footer');
     }
 
-    public function set_guru_mengajar()
+    public function add_mengajar()
     {
-        $data['menu'] = 'set_guru_mengajar';
-        $this->load->view('templates/header',$data);
-        echo 'kosong';
-        $this->load->view('templates/footer');
+        $mapel = $this->input->post('mapel');
+        $semester = $this->M_tahun_ajaran->get_semester_aktif();
+        $data = array(
+            'id_guru' => $this->input->post('id_guru'),
+            'id_semester' => $semester['id_semester']
+            );
+        foreach ($mapel as $key) 
+        {
+            $data['id_mapel'] = $key;
+            $this->M_guru->set_guru_mengajar($data);
+        }
+        redirect('admin/set_guru_mengajar');   
     }
 }
