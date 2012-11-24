@@ -2,14 +2,19 @@
 Class Admin extends CI_Controller
 {
 	public function __construct()
-       {
+    {
             parent::__construct();
-            if($this->session->userdata('logged_id') != TRUE && $this->session->userdata('role') != 'admin')
+            /*if($this->session->userdata('logged_id') != TRUE && $this->session->userdata('role') != 'admin')
             {
             	$this->session->set_flashdata('msg', 'Anda Belum Login!');
             	redirect('home');
-            }
-       }
+            }*/
+        if(!is_login())
+        {
+            $this->session->set_flashdata('msg', 'Anda Belum Login!');
+            redirect('home'); 
+        }
+      }
 
     public function index()
     {

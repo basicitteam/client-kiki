@@ -51,4 +51,11 @@ class Home extends CI_Controller
 			redirect('home');
 		}
 	}
+
+	public function logout()
+	{
+		$this->session->sess_destroy();
+		$this->session->set_flashdata('msg', 'Berhasil Logout');
+		redirect('home');
+	}
 }
