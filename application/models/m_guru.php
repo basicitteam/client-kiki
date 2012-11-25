@@ -52,11 +52,6 @@ Class M_guru extends CI_Model
 		$this->db->insert('guru', $data);
 	}
 
-	public function set_guru_mengajar($data)
-	{
-		$this->db->insert('mengajar', $data);
-	}
-
 	public function update($id_guru,$data)
 	{
 		$this->db->where('id_guru', $id_guru);
@@ -66,16 +61,5 @@ Class M_guru extends CI_Model
 	public function delete($id_guru)
 	{
 		$this->db->delete('guru', array('id_guru' => $id_guru)); 
-	}
-
-	public function get_mengajar($offset = 0, $limit = 20)
-	{
-		$this->db->select('*');
-		$this->db->from('mengajar');
-		$this->db->join('guru', 'guru.id_guru = mengajar.id_guru');
-		$this->db->join('mapel', 'mapel.id_mapel = mengajar.id_mapel');
-
-		$query = $this->db->get();
-		return $query->row_array();
 	}
 }
