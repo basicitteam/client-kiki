@@ -39,7 +39,7 @@
 					<div class="span6">
 						<?php echo $this->session->flashdata('msg'); ?>
 						<form class="form-inline well" method="POST" action="<?php echo site_url('home/validasi_login'); ?>">
-							<input name="user_id" type="text" class="input-small" placeholder="User Id">
+							<input name="username" type="text" class="input-small" placeholder="NIP/NIS">
 							<input name="password" type="password" class="input-small" placeholder="Password">
 							<label class="checkbox">
 							  <input type="checkbox"> Remember me
