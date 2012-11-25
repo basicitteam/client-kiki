@@ -13,3 +13,42 @@ function is_login()
 		return FALSE;
 	}
 }
+
+function is_admin()
+{
+	$CI =& get_instance();
+	if($CI->session->userdata('role') == 'admin')
+	{
+		return TRUE;
+	}
+	else
+	{
+		return FALSE;
+	}
+}
+
+function is_guru()
+{
+	$CI =& get_instance();
+	if($CI->session->userdata('role') == 'guru')
+	{
+		return TRUE;
+	}
+	else
+	{
+		return FALSE;
+	}
+}
+
+function is_siswa()
+{
+	$CI =& get_instance();
+	if($CI->session->userdata('role') == 'siswa')
+	{
+		return TRUE;
+	}
+	else
+	{
+		return FALSE;
+	}
+}
