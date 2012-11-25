@@ -2,7 +2,7 @@
 			<div id="main" class="alert alert-info">
 				<section>
 					<article>
-						<form class="form-horizontal" action="<?php echo site_url('admin/proses_set_guru'); ?>" method="POST" enctype="multipart/form-data">
+						<form class="form-horizontal" action="<?php echo site_url('admin/mengajar/add_proses'); ?>" method="POST" enctype="multipart/form-data">
 						<fieldset>
 						    <legend>Tambah Mata Pelajaran</legend>
 							<div class="control-group">
@@ -13,12 +13,15 @@
 						    </div>
 							<div class="control-group select optional"><label class="select optional control-label" for="mapel">Mata Pelajaran</label>
 							<div class="controls">
-								<input name="mapel" type="hidden" value="">
-								<select class="select optional" id="mapel" multiple="multiple" name="mapel">
-								<option value="Matematika">Matematika</option>
-								<option value="Biologi">Biologi</option>
-								<option value="Kimia">Kimia</option>
-								<option value="Fisika">Fisika</option>
+								<select class="select optional" id="mapel" multiple="multiple" name="mapel[]">
+								<?php 
+								foreach ($mapel as $key) 
+								{
+								?>
+								<option value="<?php echo $key['id_mapel']; ?>"><?php echo $key['mapel']; ?></option>
+								<?php
+								}
+								?>
 								</select>
 							</div>
 							</div>

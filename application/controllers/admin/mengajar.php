@@ -13,7 +13,7 @@ Class mengajar extends CI_Controller
 
     public function index()
     {
-        $data['mengajar'] = $this->M_guru->get_mengajar();
+        $data['mengajar'] = $this->M_mengajar->get();
         $data['menu'] = 'set_guru_mengajar';
         $this->load->view('templates/header',$data);
         $this->load->view('admin/mengajar',$data);
@@ -22,7 +22,7 @@ Class mengajar extends CI_Controller
 
     public function add()
     {
-        $data['mapel'] = '';
+        $data['mapel'] = $this->M_mata_pelajaran->get();
         $data['menu'] = 'set_guru_mengajar';
         $this->load->view('templates/header',$data);
         $this->load->view('admin/tambah_set_guru');
@@ -31,18 +31,37 @@ Class mengajar extends CI_Controller
 
     public function add_proses()
     {
-        $mapel = $this->input->post('mapel');
-        $semester = $this->M_tahun_ajaran->get_semester_aktif();
-        $data = array(
-            'id_guru' => $this->input->post('id_guru'),
-            'id_semester' => $semester['id_semester']
-            );
-        foreach ($mapel as $key) 
-        {
-            $data['id_mapel'] = $key;
-            $this->M_guru->set_guru_mengajar($data);
+        if($this->M_guru->get_guru($this->input->post('nip')) != FALSE)
+        {    
+            $guru = $this->M_guru->get_guru($this->input->post('nip'));
+            $mapel = $this->input->post('mapel');
+            $semester = $this->M_tahun_ajaran->get_semester_aktif();
+            $data = array(
+                'id_guru' => $guru['id_guru'],
+                'id_semester' => $semester['id_semester']
+                );
+            foreach ($mapel as $key) 
+            {
+                if($this->M_mengajar->cek_mengajar($guru['id_guru'],$key,$semester['id_semester']))
+                {
+                    $data['id_mapel'] = $key;
+                    $this->M_mengajar->set_guru_mengajar($data);
+                }
+            }
+            $this->session->set_flashdata('msg', 'input mengajar untuk guru '.$guru['nama_guru'].' berhasil');
         }
-        redirect('admin/set_guru_mengajar');
+        else
+        {
+            $this->session->set_flashdata('msg', 'NIP '.$this->input->post('nip').' tidak terdaftar');
+        }
+        redirect('admin/mengajar');
+    }
+
+    public function delete()
+    {
+        $this->M_mengajar->delete($this->input->post('id_mengajar'));
+        $this->session->set_flashdata('msg', 'Data berhasil dihapus');
+        redirect('admin/mengajar');
     }
 
 }
