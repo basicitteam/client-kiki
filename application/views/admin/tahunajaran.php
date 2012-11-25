@@ -1,6 +1,6 @@
 					<div class="span9 well">
 						<div class="alert alert-info">
-							<form class="form-search" style="padding-top:15px" method="post" action="<?php echo site_url('admin/add_tahun_ajaran'); ?>">
+							<form class="form-search" style="padding-top:15px" method="post" action="<?php echo site_url('admin/tahun_ajaran/add'); ?>">
 							  <input name="tahun_ajaran" type="text" placeholder="Tahun Ajaran" class="input-medium search-query"/>
 								<button type="submit" class="btn">Tambah</button>
 							</form>
@@ -16,7 +16,8 @@
 										</thead>
 										<tbody>
 											<?php
-											foreach ($tahun_ajaran as $key) {
+											foreach ($tahun_ajaran as $key) 
+											{
 											
 											?>
 											<tr <?php if ($key['status'] == 1) {
@@ -27,10 +28,11 @@
 											<td><center><?php echo $key['tahun_ajaran']?></center></td>
 											<td><center><?php echo $key['semester']?></center></td>
 											<td>
-											<form method="POST" action="<?php echo site_url('admin/set_semester_aktif'); ?>">
+											<form method="POST" action="<?php echo site_url('admin/tahun_ajaran/set_aktif'); ?>">
 												<input type="hidden" name="id_semester" value="<?php echo $key['id_semester']; ?>"/>
 											<?php
-											if ($key['status'] == 1) {
+											if ($key['status'] == 1) 
+											{
 											?>
 												<button type="submit" class="btn btn-success pull-right"><i class="icon-edit"></i>Aktif</button>
 											<?php
@@ -45,7 +47,7 @@
 											</form>
 											</td>
 											<td>
-												<form method="POST" action="<?php echo site_url('admin/delete_tahun_ajaran'); ?>">
+												<form method="POST" action="<?php echo site_url('admin/tahun_ajaran/delete'); ?>">
 													<input type="hidden" name="id_semester" value="<?php echo $key['id_tahun_ajaran']; ?>"/>
 													<button type="submit" class="btn btn-danger pull-right"><i class="icon-remove"></i>Delete</button>
 												</form>

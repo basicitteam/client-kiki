@@ -25,8 +25,9 @@ class Home extends CI_Controller
 		}
 		elseif($this->M_guru->validasi_guru($this->input->post('username'),$this->input->post('password'))) 
 		{
-			$guru = $this->m_guru->get_guru($username);
+			$guru = $this->M_guru->get_guru($username);
 			$newdata = array(
+				   'nip' => $this->input->post('username'),
                    'nama'  => $guru['nama_guru'],
                    'role'     => 'guru',
                    'logged_in' => TRUE

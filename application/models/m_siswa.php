@@ -13,12 +13,23 @@ Class M_siswa extends CI_Model
 			return FALSE;
 		}
 	}
-
-	public function get_siswa()
+	
+	public function get_total_result()
 	{
 		$query = $this->db->query('
 		select * from siswa 
 		inner join kelas on siswa.id_kelas = kelas.id_kelas
+		');
+		return $query->result_array();	
+	}
+
+	public function get_siswa($offset = 0,$limit = 20)
+	{
+		$query = $this->db->query('
+		select * from siswa 
+		inner join kelas on siswa.id_kelas = kelas.id_kelas
+		order by siswa.nis DESC
+		LIMIT '.$offset.' , '.$limit.'
 		');
 		return $query->result_array();
 	}
@@ -28,9 +39,11 @@ Class M_siswa extends CI_Model
 		$query = $this->db->query('
 		select * from siswa 
 		inner join kelas on siswa.id_kelas = kelas.id_kelas
+		where nis = '.$nis.'
 		');
 		return $query->row_array();
 	}
+	
 	
 	public function is_siswa_exist($nis)
 	{
@@ -65,6 +78,6 @@ Class M_siswa extends CI_Model
 	
 	public function delete($nis)
 	{
-		$this->db->delete('siswa', array('nis' => $nis)); 
+		$this->db->delete('siswa', array('nis' => $nis) ); 
 	}
 }

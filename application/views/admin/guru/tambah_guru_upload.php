@@ -3,7 +3,7 @@
 			<center><h3>Tambah Guru melalui file Excel</h3></center>
 				<section>
 				<article>
-						<form class="form-horizontal" action="<?php echo site_url('guru/insert_guru_upload'); ?>" method="POST" enctype="multipart/form-data">
+						<form class="form-horizontal" action="<?php echo site_url('admin/guru/insert_guru_upload'); ?>" method="POST" enctype="multipart/form-data">
 						<fieldset>
 						    <div class="control-group">
 								<label class="control-label" for="fileInput">File input</label>

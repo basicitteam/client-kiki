@@ -2,7 +2,7 @@
 			<div id="main" class="alert alert-info">
 				<section>
 					<article>
-						<form class="form-horizontal" action="<?php echo site_url('admin/proses_guru_manual'); ?>" method="POST" enctype="multipart/form-data">
+						<form class="form-horizontal" action="<?php echo site_url('admin/guru/proses_guru_manual'); ?>" method="POST" enctype="multipart/form-data">
 						<fieldset>
 						    <legend>Tambah Guru</legend>
 							<div class="control-group">

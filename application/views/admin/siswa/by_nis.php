@@ -3,12 +3,13 @@
 						<div class="alert alert-info">
 						<div class="row-fluid">
 						<div class="span10">
-							<form class="form-inline" id="input-nis" action="<?php echo site_url('admin/siswa_nis');?>" method="get">
+							<form class="form-inline" id="input-nis" action="<?php echo site_url('admin/cari_siswa');?>" method="get">
 								<fieldset>
 								<div class="control-group">
 								<div class="controls">
 									<input name="nis" type="text" class="input-small" id="nis" placeholder="Input Nis"/>
 									<input id="btn-nis" class="btn btn-primary" type="submit" name="btn-nis" value="submit"/>
+									<a href="<?php echo site_url('admin/siswa'); ?>" class="btn btn-success">Back</a>
 								</div>
 								</div>        
 								</fieldset>
@@ -33,11 +34,7 @@
 											<th><center>No.</center></th>
 											<th><center>NIS</center></th>
 											<th><center>Nama</center></th>
-											<th><center>Jenis Kelamin</center></th>
-											<th><center>Alamat</center></th>
 											<th><center>Kelas</center></th>
-											<th><center>User ID</center></th>
-											<th><center>Password</center></th>
 											<th colspan='2'><center>Action</center></th>
 										  </tr>
 										</thead>
@@ -46,15 +43,11 @@
 											<td>1.</td>
 											<td><?php echo $siswa['nis'] ?></td>
 											<td><?php echo $siswa['nama_siswa'] ?></td>
-											<td><?php echo $siswa['jns_kelamin'] ?></td>
-											<td><?php echo $siswa['alamat'] ?></td>
 											<td><?php echo $siswa['kelas'] ?></td>
-											<td><?php echo $siswa['username'] ?></td>
-											<td><?php echo $siswa['password'] ?></td>
 											<td>
-											<a class="btn btn-primary" href="<?php echo site_url('admin/cari_siswa/'.$siswa['nis']); ?>">
-											<i class="icon-edit"></i>
-											Edit
+											<a class="btn btn-info" href="<?php echo site_url('admin/detail/'.$siswa['nis']); ?>">
+											<i class="icon-zoom-in"></i>
+											Detail
 											</a>
 											</td>
 											<td>
@@ -66,24 +59,12 @@
 										  </tr>
 										</tbody>
 									</table>
-								<div class="pagination">
-									<center>
-										<ul>
-										  <li><a href="#">&laquo;</a></li>
-										  <li><a href="#">1</a></li>
-										  <li><a href="#">2</a></li>
-										  <li><a href="#">3</a></li>
-										  <li><a href="#">4</a></li>
-										  <li><a href="#">&raquo;</a></li>
-										</ul>
-									</center>
-								</div>
-								</div>
 						</div>
+					</div>
 					</div>
 									
 				<form class="form-horizontal" action="<?php echo site_url('admin/add_siswa_manual'); ?>" method="POST" enctype="multipart/form-data">
-					<div id="tambah" class="modal hide fade" style="display: none;">
+					<div id="tambah" class="modal animated flipInX" style="display: none;">
 						<div class="modal-header">
 						  <button class="close" data-dismiss="modal"><i class="icon-remove"></i></button>
 						  <h3>Tambah Data Siswa</h3>
@@ -117,7 +98,8 @@
 							<div class="control-group">
 							<label class="control-label" for="kelas">Kelas</label>
 							<div class="controls">
-									<select id="kelas" name="kelas">  
+									<select id="kelas" name="kelas">
+												<option>Pilih Kelas</option>
 										<?php foreach($kelas_data as $test){ ?>  
 												<option value="<?php echo $test['id_kelas']?>"><?php echo $test['kelas']?></option>
 													<?php } ?> 
@@ -125,9 +107,9 @@
 							</div>
 							</div>
 							<div class="control-group">
-							<label class="control-label" for="username">Username</label>
+							<label class="control-label" for="foto">Foto</label>
 							<div class="controls">
-								<input type="text" class="input-xlarge" id="username" name="username">
+								<input name="userfile" class="input-file" id="fileInput" type="file">
 							</div>
 							</div>
 							<div class="control-group">

@@ -27,13 +27,14 @@
 						<div class="control-group">
 						<label class="control-label" for="alamat">Alamat</label>
 						<div class="controls">
-							<textarea class="input-xlarge" id="alamat" rows="3" name="alamat" value="<?php echo $siswa['alamat'];?>"></textarea>
+							<input class="input-xlarge" id="alamat" rows="3" name="alamat" value="<?php echo $siswa['alamat'];?>"></textarea>
 						</div>
 						</div>
 						<div class="control-group">  
 							<label class="control-label" for="kelas">Kelas</label>  
 								<div class="controls">  
 									<select id="kelas" name="kelas">
+										<option>Pilih Kelas</option>
 										<?php foreach($kelas_data as $test){ ?>  
 										<option value="<?php echo $test['id_kelas']?>"><?php echo $test['kelas']?></option>
 										<?php } ?>

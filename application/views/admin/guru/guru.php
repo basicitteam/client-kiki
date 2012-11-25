@@ -10,8 +10,8 @@
 								  <button class="btn btn-primary">Tambah Guru</button>
 								  <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
 								  <ul class="dropdown-menu">
-									<li><a href="<?php echo site_url('admin/add_guru_manual'); ?>">Manual</a></li>
-									<li><a href="<?php echo site_url('admin/add_guru_upload'); ?>">Upload File</a></li>
+									<li><a href="<?php echo site_url('admin/guru/add'); ?>">Manual</a></li>
+									<li><a href="<?php echo site_url('admin/guru/add_upload'); ?>">Upload File</a></li>
 								  </ul>
 								</div>
 							</form>
@@ -30,15 +30,15 @@
 									?>
 									<tr>
 									<td><?php echo $key['nip']; ?></td>
-									<td><a href="<?php echo site_url('admin/view_guru/'.$key['id_guru']); ?>"><?php echo $key['nama_guru']; ?></a></td>
+									<td><a href="<?php echo site_url('admin/guru/view/'.$key['id_guru']); ?>"><?php echo $key['nama_guru']; ?></a></td>
 									<td>
-									<a class="btn btn-primary" href="<?php echo site_url('admin/edit_guru/'.$key['id_guru']); ?>">
+									<a class="btn btn-primary" href="<?php echo site_url('admin/guru/edit/'.$key['id_guru']); ?>">
 									<i class="icon-edit"></i>
 									Edit
 									</a>
 									</td>
 									<td>
-									<form method="post" action="<?php echo site_url('admin/delete_guru'); ?>">
+									<form method="post" action="<?php echo site_url('admin/guru/delete'); ?>">
 										<input type="hidden" name="id_guru" value="<?php echo $key['id_guru']; ?>"/>
 										<button type="submit" class="btn btn-danger">
 										<i class="icon-remove"></i>
