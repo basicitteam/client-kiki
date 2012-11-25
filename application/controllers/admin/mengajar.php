@@ -11,9 +11,16 @@ Class mengajar extends CI_Controller
         }
     }
 
-    public function index()
+    public function index($offset = 0)
     {
-        $data['mengajar'] = $this->M_mengajar->get();
+        $config['base_url'] = site_url('admin/mengajar/index');
+        $config['total_rows'] = $this->M_mengajar->get_total_rows();
+        $config['per_page'] = 10;
+        $config['uri_segment'] = 4; 
+
+        $this->pagination->initialize($config);
+
+        $data['mengajar'] = $this->M_mengajar->get(TRUE,$offset,$config['per_page']);
         $data['menu'] = 'set_guru_mengajar';
         $this->load->view('templates/header',$data);
         $this->load->view('admin/mengajar',$data);
@@ -42,12 +49,13 @@ Class mengajar extends CI_Controller
                 );
             foreach ($mapel as $key) 
             {
-                if($this->M_mengajar->cek_mengajar($guru['id_guru'],$key,$semester['id_semester']))
+                if(!$this->M_mengajar->cek_mengajar($guru['id_guru'],$key,$semester['id_semester']))
                 {
                     $data['id_mapel'] = $key;
                     $this->M_mengajar->set_guru_mengajar($data);
                 }
             }
+
             $this->session->set_flashdata('msg', 'input mengajar untuk guru '.$guru['nama_guru'].' berhasil');
         }
         else

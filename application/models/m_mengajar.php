@@ -1,11 +1,8 @@
 <?php
 Class M_mengajar extends CI_Model
 {
-	public function get($aktif = TRUE)
+	public function get($aktif = TRUE,$offset = 0,$limit = 20)
 	{
-		/*$this->db->select('*');
-		$this->db->from('mengajar');
-		*/
 		if($aktif == TRUE)
 		{
 			$this->db->where('id_semester',get_semester_aktif());	
@@ -13,7 +10,7 @@ Class M_mengajar extends CI_Model
 		$this->db->join('guru', 'guru.id_guru = mengajar.id_guru');
 		$this->db->join('mapel', 'mapel.id_mapel = mengajar.id_mapel');
 
-		$query = $this->db->get('mengajar');
+		$query = $this->db->get('mengajar',$limit,$offset);
 		return $query->result_array();
 	}
 
@@ -33,7 +30,7 @@ Class M_mengajar extends CI_Model
 		$this->db->where('id_mapel', $id_mapel);
 		$this->db->where('id_semester', $id_semester);  
 		$query = $this->db->get('mengajar');
-		if($query->num_rows == 0)
+		if($query->num_rows > 0)
 		{
 			return TRUE;
 		}
@@ -41,6 +38,19 @@ Class M_mengajar extends CI_Model
 		{
 			return FALSE;
 		}
+	}
+
+	public function get_total_rows($aktif = TRUE)
+	{
+		if($aktif == TRUE)
+		{
+			$this->db->where('id_semester',get_semester_aktif());	
+		}
+		$this->db->join('guru', 'guru.id_guru = mengajar.id_guru');
+		$this->db->join('mapel', 'mapel.id_mapel = mengajar.id_mapel');
+
+		$query = $this->db->get('mengajar');
+		return $query->num_rows();
 	}
 
 }
