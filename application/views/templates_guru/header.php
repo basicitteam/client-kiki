@@ -41,15 +41,15 @@
 				<div class="row-fluid" style="padding-top:100px">
 					<div class="span3 well">
 					<center><h4>Welcome</h4></center>
-					<img src="<?php echo base_url('assets/img/contoh.jpg')?>">
-					<center><h5>Drs. Sudjiwotedjo.S pd</h5></center>
+					<img src="<?php echo base_url('assets/uploads/foto_guru/'.$profile['foto'])?>">
+					<center><h5><?php echo $profile['nama_guru']; ?></h5></center>
 						<ul class="nav nav-list">
 						  <li class="nav-header">Manage Guru</li>
-						  <li class="navigation <?php if(isset($menu)){ if($menu == 'materi') {echo 'active';} } ?>"><a href="<?php echo site_url('materi'); ?>"><i class="icon-pencil"></i>Materi</a></li>
-						  <li class="navigation <?php if(isset($menu)){ if($menu == 'tugas') {echo 'active';} } ?>"><a href="<?php echo site_url('tugas'); ?>"><i class="icon-pencil"></i> Tugas</a></li>
-						  <li class="navigation <?php if(isset($menu)){ if($menu == 'ujian') {echo 'active';} } ?>"><a href="<?php echo site_url('ujian'); ?>"><i class="icon-pencil"></i>Ujian</a></li>
-						  <li class="navigation <?php if(isset($menu)){ if($menu == 'laporan_ujian') {echo 'active';} } ?>"><a href="<?php echo site_url('laporan_ujian'); ?>"><i class="icon-pencil"></i> Laporan Hasil Ujian</a></li>
-						  <li class="navigation <?php if(isset($menu)){ if($menu == 'laporan_tugas') {echo 'active';} } ?>"><a href="<?php echo site_url('laporan_tugas'); ?>"><i class="icon-pencil"></i>Laporan Hasil Tugas</a></li>
+						  <li class="navigation <?php if(isset($menu)){ if($menu == 'materi') {echo 'active';} } ?>"><a href="<?php echo site_url('guru/materi'); ?>"><i class="icon-pencil"></i>Materi</a></li>
+						  <li class="navigation <?php if(isset($menu)){ if($menu == 'tugas') {echo 'active';} } ?>"><a href="<?php echo site_url('guru/tugas'); ?>"><i class="icon-pencil"></i> Tugas</a></li>
+						  <li class="navigation <?php if(isset($menu)){ if($menu == 'ujian') {echo 'active';} } ?>"><a href="<?php echo site_url('guru/ujian'); ?>"><i class="icon-pencil"></i>Ujian</a></li>
+						  <li class="navigation <?php if(isset($menu)){ if($menu == 'laporan_ujian') {echo 'active';} } ?>"><a href="<?php echo site_url('guru/laporan_ujian'); ?>"><i class="icon-pencil"></i> Laporan Hasil Ujian</a></li>
+						  <li class="navigation <?php if(isset($menu)){ if($menu == 'laporan_tugas') {echo 'active';} } ?>"><a href="<?php echo site_url('guru/laporan_tugas'); ?>"><i class="icon-pencil"></i>Laporan Hasil Tugas</a></li>
 						  <li class="nav-header">Akun Guru</li>
 						  <li><a href="#"><i class="icon-user"></i> Profil Guru</a></li>
 						  <li><a href="#"><i class="icon-cog"></i> Pengaturan</a></li>
