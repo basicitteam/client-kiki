@@ -41,7 +41,14 @@ Class M_siswa extends CI_Model
 		inner join kelas on siswa.id_kelas = kelas.id_kelas
 		where nis = '.$nis.'
 		');
-		return $query->row_array();
+		if($query->num_rows() > 0)
+		{
+			return $query->row_array();
+		}
+		else
+		{
+			return FALSE;
+		}
 	}
 	
 	

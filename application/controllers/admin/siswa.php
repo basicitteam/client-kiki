@@ -162,4 +162,5 @@ Class siswa extends CI_Controller
                 redirect('admin/siswa');
         }
     }
+
 }
