@@ -39,6 +39,8 @@
 */
 
 $route['default_controller'] = "home";
+$route['guru'] = "guru/materi";
+$route['admin'] = "admin/home";
 $route['404_override'] = '';
 
 
