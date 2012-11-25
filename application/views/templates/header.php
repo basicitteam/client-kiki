@@ -43,12 +43,12 @@
 						<ul class="nav nav-list">
 						  <li class="nav-header">Manage Akademik</li>
 						  <li class="navigation <?php if(isset($menu)){ if($menu == 'siswa') {echo 'active';} } ?>"><a href="<?php echo site_url('admin/siswa'); ?>"><i class="icon-pencil"></i> Siswa</a></li>
-						  <li class="navigation <?php if(isset($menu)){ if($menu == 'set_siswa_mapel') {echo 'active';} } ?>"><a href="<?php echo site_url('admin/set_siswa_mapel'); ?>"><i class="icon-pencil"></i> Set Siswa Mapel</a></li>
+						  <li class="navigation <?php if(isset($menu)){ if($menu == 'set_siswa_mapel') {echo 'active';} } ?>"><a href="<?php echo site_url('admin/siswa/mengambil'); ?>"><i class="icon-pencil"></i> Set Siswa Mapel</a></li>
 						  <li class="navigation <?php if(isset($menu)){ if($menu == 'guru') {echo 'active';} } ?>"><a href="<?php echo site_url('admin/guru'); ?>"><i class="icon-pencil"></i> Guru</a></li>
-						  <li class="navigation <?php if(isset($menu)){ if($menu == 'set_guru_mengajar') {echo 'active';} } ?>"><a href="<?php echo site_url('admin/set_guru_mengajar'); ?>"><i class="icon-pencil"></i> Set Guru Mengajar</a></li>
-						  <li class="navigation <?php if(isset($menu)){ if($menu == 'matapelajaran') {echo 'active';} } ?>"><a href="<?php echo site_url('admin/matapelajaran'); ?>"><i class="icon-pencil"></i> Mata Pelajaran</a></li>
+						  <li class="navigation <?php if(isset($menu)){ if($menu == 'set_guru_mengajar') {echo 'active';} } ?>"><a href="<?php echo site_url('admin/mengajar'); ?>"><i class="icon-pencil"></i> Set Guru Mengajar</a></li>
+						  <li class="navigation <?php if(isset($menu)){ if($menu == 'matapelajaran') {echo 'active';} } ?>"><a href="<?php echo site_url('admin/mapel'); ?>"><i class="icon-pencil"></i> Mata Pelajaran</a></li>
 						  <li class="navigation <?php if(isset($menu)){ if($menu == 'kelas') {echo 'active';} } ?>"><a href="<?php echo site_url('admin/kelas'); ?>"><i class="icon-pencil"></i> Kelas</a></li>
-						  <li class="navigation <?php if(isset($menu)){ if($menu == 'tahunajaran') {echo 'active';} } ?>"><a href="<?php echo site_url('admin/tahunajaran'); ?>"><i class="icon-pencil"></i> Tahun Ajaran</a></li>
+						  <li class="navigation <?php if(isset($menu)){ if($menu == 'tahunajaran') {echo 'active';} } ?>"><a href="<?php echo site_url('admin/tahun_ajaran'); ?>"><i class="icon-pencil"></i> Tahun Ajaran</a></li>
 						  <li class="nav-header">Admin Account</li>
 						  <li><a href="#"><i class="icon-user"></i> Profile</a></li>
 						  <li><a href="#"><i class="icon-cog"></i> Settings</a></li>
