@@ -43,7 +43,7 @@
 						<ul class="nav nav-list">
 						  <li class="nav-header">Manage Akademik</li>
 						  <li class="navigation <?php if(isset($menu)){ if($menu == 'siswa') {echo 'active';} } ?>"><a href="<?php echo site_url('admin/siswa'); ?>"><i class="icon-pencil"></i> Siswa</a></li>
-						  <li class="navigation <?php if(isset($menu)){ if($menu == 'set_siswa_mapel') {echo 'active';} } ?>"><a href="<?php echo site_url('admin/siswa/mengambil'); ?>"><i class="icon-pencil"></i> Set Siswa Mapel</a></li>
+						  <li class="navigation <?php if(isset($menu)){ if($menu == 'set_siswa_mapel') {echo 'active';} } ?>"><a href="<?php echo site_url('admin/mengambil'); ?>"><i class="icon-pencil"></i> Set Siswa Mapel</a></li>
 						  <li class="navigation <?php if(isset($menu)){ if($menu == 'guru') {echo 'active';} } ?>"><a href="<?php echo site_url('admin/guru'); ?>"><i class="icon-pencil"></i> Guru</a></li>
 						  <li class="navigation <?php if(isset($menu)){ if($menu == 'set_guru_mengajar') {echo 'active';} } ?>"><a href="<?php echo site_url('admin/mengajar'); ?>"><i class="icon-pencil"></i> Set Guru Mengajar</a></li>
 						  <li class="navigation <?php if(isset($menu)){ if($menu == 'matapelajaran') {echo 'active';} } ?>"><a href="<?php echo site_url('admin/mapel'); ?>"><i class="icon-pencil"></i> Mata Pelajaran</a></li>
