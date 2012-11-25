@@ -17,12 +17,7 @@
 						<div class="control-group">
 						<label class="control-label" for="nama_materi">Nama Materi</label>
 						<div class="controls">
-								<select id="nama_materi" name="nama_materi">  
-												<option value="nama_materi">Turunan</option>  
-												<option value="nama_materi">Gaya dan Usaha</option>  
-												<option value="nama_materi">Getaran</option>  
-												<option value="nama_materi">Listrik</option>  
-								</select>
+							<input type="text" name="materi"/>
 						</div>
 						</div>
 						<div class="control-group">

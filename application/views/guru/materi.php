@@ -1,28 +1,19 @@
 
 					<div class="span9 well">
 						<div class="alert alert-info">
-							<form class="form-search span10" style="padding-top:15px" action="<?php echo site_url('materi/lihat_materi')?>" method="POST" enctype="multipart/form-data">
+							<form class="form-search span10" style="padding-top:15px" action="<?php echo site_url('guru/lihat_materi')?>" method="POST" enctype="multipart/form-data">
 							   
 							   <select class="span3" id="kelas">
 								<option>Pilih Mata Pelajaran</option>
 								<option>Fisika</option>
 								<option>Kimia</option>
 							  </select>
-							  
-							  <select class="span3" id="kelas">
-								<option>Pilih Materi</option>
-								<option>Turunan</option>
-								<option>Gaya dan Usaha</option>
-								<option>Getaran</option>
-								<option>Listrik</option>
-							  </select>
+				  
 								<button type="submit" class="btn">Search</button>
 							</form>
 								<div class=" span2 btn-group pull-right" style="padding-top:15px">
-								  <a class="btn btn-primary"	href="<?php echo site_url('materi/tambah_materi_manual') ?>">Tambah Materi<a/>
+								  <a class="btn btn-primary"	href="<?php echo site_url('guru/tambah_materi') ?>">Tambah Materi<a/>
 								</div>
-							
-							
 							<table class="table table-striped">
 								<thead>
 								  <tr>

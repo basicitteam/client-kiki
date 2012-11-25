@@ -1,6 +1,6 @@
 					<div class="span9 well">
 						<div class="alert alert-info">
-							<form class="form-search span10" style="padding-top:15px" action="<?php echo site_url('materi/lihat_tugas')?>" method="POST" enctype="multipart/form-data">
+							<form class="form-search span10" style="padding-top:15px" action="<?php echo site_url('guru/lihat_tugas')?>" method="POST" enctype="multipart/form-data">
 							   Mata Pelajaran
 							   <select class="span3" id="kelas">
 								<option>Pilih Mata Pelajaran</option>
@@ -11,7 +11,7 @@
 								<button type="submit" class="btn">Search</button>
 							</form>
 								<div class=" span2 btn-group pull-right" style="padding-top:15px">
-								  <a class="btn btn-primary"	href="<?php echo site_url('materi/tambah_tugas_manual') ?>">Tambah Tugas<a/>
+								  <a class="btn btn-primary"	href="<?php echo site_url('guru/tambah_tugas') ?>">Tambah Tugas<a/>
 								</div>
 							
 							

@@ -48,7 +48,7 @@
 							
 						<div class="form-actions alert alert-info">
 						<input type="submit" class="btn btn-primary"/>
-						<a href="<?php echo site_url('tugas'); ?>" class="btn btn-warning">Cancel</a>
+						<a href="<?php echo site_url('guru/tugas'); ?>" class="btn btn-warning">Cancel</a>
 						</div>
 					</fieldset>
 				</form>
