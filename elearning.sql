@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 25, 2012 at 05:08 PM
+-- Generation Time: Nov 26, 2012 at 04:19 PM
 -- Server version: 5.5.25a
 -- PHP Version: 5.4.4
 
@@ -65,7 +65,8 @@ CREATE TABLE IF NOT EXISTS `el_sessions` (
 --
 
 INSERT INTO `el_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('2944508f038509ae4ddbe2d0804b48dd', '0.0.0.0', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11', 1353859447, 'a:5:{s:9:"user_data";s:0:"";s:3:"nip";s:8:"87654321";s:4:"nama";N;s:4:"role";s:4:"guru";s:9:"logged_in";b:1;}');
+('3f9cedbe8bf34ac6f8d46f1cf49391d0', '0.0.0.0', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11', 1353922868, 'a:5:{s:9:"user_data";s:0:"";s:3:"nip";s:8:"87654321";s:4:"nama";s:5:"admin";s:4:"role";s:5:"admin";s:9:"logged_in";b:1;}'),
+('de4ae637afaafcd9566b52e6d3efb8fb', '0.0.0.0', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11', 1353942535, 'a:5:{s:9:"user_data";s:0:"";s:3:"nip";s:8:"87654321";s:4:"nama";N;s:4:"role";s:4:"guru";s:9:"logged_in";b:1;}');
 
 -- --------------------------------------------------------
 
@@ -85,7 +86,7 @@ CREATE TABLE IF NOT EXISTS `guru` (
   `password` varchar(255) NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_guru`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `guru`
@@ -93,7 +94,8 @@ CREATE TABLE IF NOT EXISTS `guru` (
 
 INSERT INTO `guru` (`id_guru`, `nama_guru`, `nip`, `no_telp`, `email`, `foto`, `alamat`, `jns_kelamin`, `password`, `timestamp`) VALUES
 (7, 'Guru Pertama', '87654321', '08989970289', 'guru@pertama.com', 'Koala.jpg', 'Alamatnya Guru Pertama', 'Laki - Laki', '8b9a7246cf21d8803faf462d85b727e8', '2012-11-25 15:39:43'),
-(8, 'Guru Kedua', '98765432', '0192837656', 'guru@kedua.com', 'Penguins.jpg', 'Alamatnya guru kedua', 'Laki - Laki', 'dc3a272cae18e19bf62d634b98e06077', '2012-11-25 15:40:24');
+(8, 'Guru Kedua', '98765432', '0192837656', 'guru@kedua.com', 'Penguins.jpg', 'Alamatnya guru kedua', 'Laki - Laki', 'dc3a272cae18e19bf62d634b98e06077', '2012-11-25 15:40:24'),
+(9, 'rogers', '21436587', '08989970289', 'rogers@gmail.com', 'Chrysanthemum.jpg', 'Baleendah Indonesia', 'Laki - Laki', '7e78efd1807895e2d634ab3bbb6bc15e', '2012-11-26 08:51:42');
 
 -- --------------------------------------------------------
 
@@ -169,8 +171,17 @@ CREATE TABLE IF NOT EXISTS `materi` (
   `materi` varchar(255) NOT NULL,
   `keterangan` text NOT NULL,
   `file` varchar(255) NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_materi`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `materi`
+--
+
+INSERT INTO `materi` (`id_materi`, `id_mengajar`, `materi`, `keterangan`, `file`, `timestamp`) VALUES
+(4, 10, 'asdasd', 'asdasd', 'caldecott-ap-aws.zip', '2012-11-26 09:40:50'),
+(5, 11, 'materi biologi 1', 'coba materi biologi', 'PROPOSAL.docx', '2012-11-26 14:50:29');
 
 -- --------------------------------------------------------
 
