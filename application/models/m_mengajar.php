@@ -14,6 +14,20 @@ Class M_mengajar extends CI_Model
 		return $query->result_array();
 	}
 
+	public function get_mengajar_guru($id_guru,$aktif = TRUE,$offset = 0, $limit = 20)
+	{
+		if($aktif == TRUE)
+		{
+			$this->db->where('id_semester',get_semester_aktif());	
+		}
+		$this->db->where('mengajar.id_guru',$id_guru);
+		$this->db->join('guru', 'guru.id_guru = mengajar.id_guru');
+		$this->db->join('mapel', 'mapel.id_mapel = mengajar.id_mapel');
+
+		$query = $this->db->get('mengajar',$limit,$offset);
+		return $query->result_array();
+	}
+
 	public function set_guru_mengajar($data)
 	{
 		$this->db->insert('mengajar', $data);
