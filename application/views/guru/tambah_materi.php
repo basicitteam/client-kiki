@@ -2,15 +2,21 @@
 	<div id="main" class="alert alert-info">
 		<section>
 			<article>
-				<form class="form-horizontal" action="<?php echo site_url('materi/insert_materi_manual'); ?>" method="POST" enctype="multipart/form-data">
+				<form class="form-horizontal" action="<?php echo site_url('guru/materi/add_proses'); ?>" method="POST" enctype="multipart/form-data">
 					<fieldset>
 						<legend>Tambah Materi</legend>
 						<div class="control-group">
 						<label class="control-label" for="nama_mata_pelajaran">Nama Mata Pelajaran</label>
 						<div class="controls">
-								<select id="nama_mata_pelajaran" name="nama_mata_pelajaran">  
-												<option value="nama_mata_pelajaran">Fisika</option>  
-												<option value="nama_mata_pelajaran">Kimia</option>  
+								<select id="nama_mata_pelajaran" name="id_mengajar">
+								<?php 
+								foreach ($mapel as $key) 
+								{
+								?>
+								<option value="<?php echo $key['id_mengajar']; ?>"><?php echo $key['mapel']; ?></option>
+								<?php
+								}
+								?>  
 								</select>
 						</div>
 						</div>
@@ -24,6 +30,12 @@
 						<label class="control-label" for="keterangan">Keterangan</label>
 						<div class="controls">
 							<textarea class="input-xlarge" id="keterangan" rows="3" name="keterangan"></textarea>
+						</div>
+						</div>
+						<div class="control-group">
+						<label class="control-label" for="file">Upload File</label>
+						<div class="controls">
+							<input type="file" name="userfile" size="20" id="file" />
 						</div>
 						</div>
 						<div class="form-actions alert alert-info">

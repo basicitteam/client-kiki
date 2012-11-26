@@ -1,6 +1,6 @@
-
 					<div class="span9 well">
 						<div class="alert alert-info">
+							<?php echo $this->session->flashdata('msg'); ?>
 							<form class="form-search span10" style="padding-top:15px" action="<?php echo site_url('guru/lihat_materi')?>" method="POST" enctype="multipart/form-data">
 							   
 							   <select class="span3" id="kelas">
@@ -12,43 +12,36 @@
 								<button type="submit" class="btn">Search</button>
 							</form>
 								<div class=" span2 btn-group pull-right" style="padding-top:15px">
-								  <a class="btn btn-primary"	href="<?php echo site_url('guru/tambah_materi') ?>">Tambah Materi<a/>
+								  <a class="btn btn-primary"	href="<?php echo site_url('guru/materi/add') ?>">Tambah Materi</a>
 								</div>
 							<table class="table table-striped">
 								<thead>
 								  <tr>
 									<th><center>Mata Pelajaran</center></th>
 									<th><center>Materi</center></th>
-									<th><center>Keterangan</center></th>
 									<th><center>File</center></th>
-									<th colspan='3'><center>Action</center></th>
+									<th><center>Tanggal Upload</center></th>
+									<th><center>Action</center></th>
 								  </tr>
 								</thead>
 								<tbody>
-								  <tr>
-									<td>Fisika</td>
-									<td>Turunan</td>
-									<td>Hitung Sendiri</td>
-									<td>ini jenis file</td>
-									<td>
-									<a class="btn btn-success pull-right" href="#">
-									<i class="icon-edit"></i>
-									Share
-									</a>
-									</td>
-									<td>
-									<a class="btn btn-primary pull-right" href="#">
-									<i class="icon-edit"></i>
-									Edit
-									</a>
-									</td>
+									<?php foreach ($materi as $key) 
+									{
+									?>
+									<tr>
+									<td><?php echo $key['mapel']; ?></td>
+									<td><?php echo $key['materi']; ?></td>
+									<td><?php echo $key['file']; ?></td>
+									<td><?php echo $key['timestamp']; ?></td>
 									<td>
 									<a class="btn btn-danger pull-right" href="#">
 									<i class="icon-remove"></i>
 									Delete
 									</a>
 									</td>
-								  </tr>
+								  	</tr>
+									<?php
+									}?>
 								</tbody>
 							  </table>
 								<div class="pagination">
