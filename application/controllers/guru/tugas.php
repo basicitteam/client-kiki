@@ -24,7 +24,7 @@ class tugas extends CI_Controller
 		$data['profile'] = $this->M_guru->get_guru($this->session->userdata('nip'));
 		$data['menu'] = 'tugas';
 		$this->load->view('templates_guru/header',$data);
-		$this->load->view('guru/tambah_tugas_manual');
+		$this->load->view('guru/tambah_tugas');
 		$this->load->view('templates_guru/footer');
 	}
 }

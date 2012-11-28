@@ -11,7 +11,7 @@
 								<button type="submit" class="btn">Search</button>
 							</form>
 								<div class=" span2 btn-group pull-right" style="padding-top:15px">
-								  <a class="btn btn-primary"	href="<?php echo site_url('guru/tambah_tugas') ?>">Tambah Tugas<a/>
+								  <a class="btn btn-primary"	href="<?php echo site_url('guru/tugas/add') ?>">Tambah Tugas<a/>
 								</div>
 							
 							

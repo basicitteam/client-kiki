@@ -27,7 +27,6 @@
 						<div class="control-group">
 						<label class="control-label" for="nama_tugas">Deadline Tugas</label>
 							<div class="controls">
-							<input class="input-small datepicker" type="text" placeholder="tanggal awal..." name="tgl-awal"> -
 							<input class="input-small datepicker" type="text" placeholder="tanggal akhir...">
 							</div>
 						</div>
