@@ -28,34 +28,26 @@
 									<?php foreach ($materi as $key) 
 									{
 									?>
+									
 									<tr>
 									<td><?php echo $key['mapel']; ?></td>
-									<td><?php echo $key['materi']; ?></td>
-									<td><?php echo $key['file']; ?></td>
+									<td><a href="<?php echo site_url('guru/materi/view/'.$key['id_materi']); ?>"><?php echo $key['materi']; ?></a></td>
+									<td><a href="<?php echo base_url('assets/uploads/materi/'.$key['file']); ?>"><?php echo $key['file']; ?></a></td>
 									<td><?php echo $key['timestamp']; ?></td>
 									<td>
-									<a class="btn btn-danger pull-right" href="#">
-									<i class="icon-remove"></i>
-									Delete
-									</a>
+									<form method="POST" action="<?php echo site_url('guru/materi/delete'); ?>">
+										<input type="hidden" name="id_materi" value="<?php echo $key['id_materi']; ?>"/>
+										<button class="btn btn-danger" type="submit">
+										<i class="icon-remove"></i>
+										Delete</button>
+									</form>
 									</td>
 								  	</tr>
 									<?php
 									}?>
 								</tbody>
 							  </table>
-								<div class="pagination">
-									<center>
-										<ul>
-										  <li><a href="#">&laquo;</a></li>
-										  <li><a href="#">1</a></li>
-										  <li><a href="#">2</a></li>
-										  <li><a href="#">3</a></li>
-										  <li><a href="#">4</a></li>
-										  <li><a href="#">&raquo;</a></li>
-										</ul>
-									</center>
-								</div>
+								<?php echo $this->pagination->create_links(); ?>
 						</div>
 					</div>
 					
