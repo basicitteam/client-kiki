@@ -3,8 +3,8 @@ class Laporan_ujian extends CI_Controller
 {
 	public function index()
 	{
-		
-		$this->load->view('templates_guru/header');
+		$data['profile'] = $this->M_guru->get_guru($this->session->userdata('nip'));
+		$this->load->view('templates_guru/header',$data);
 		$this->load->view('guru/laporan_ujian');
 		$this->load->view('templates_guru/footer');
 	}
