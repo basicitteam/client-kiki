@@ -27,6 +27,21 @@ Class M_guru extends CI_Model
 		}
 	}
 
+	public function search_by_nip($nip)
+	{
+		$this->db->like('nip', $nip);
+		$query = $this->db->get('guru');
+		
+		if($query->num_rows() == 1)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return FALSE;
+		}
+	}
+
 	public function get_guru_by_id($id_guru)
 	{
 		$query = $this->db->get_where('guru', array('id_guru' => $id_guru));

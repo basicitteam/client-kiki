@@ -19,8 +19,23 @@ Class guru extends CI_Controller
         $config['uri_segment'] = 4; 
 
         $this->pagination->initialize($config);
-
-        $data['guru'] = $this->M_guru->get($offset, $config['per_page']);
+        if($this->input->post('nip'))
+        {
+            if($this->M_guru->search_by_nip($this->input->post('nip')) != FALSE)
+            {
+                $data['guru'] = $this->M_guru->search_by_nip($this->input->post('nip'));   
+            }
+            else
+            {
+                echo $this->input->post('nip');
+                $this->session->set_flashdata('msg', 'Tidak ada data untuk NIP '.$this->input->post('nip'));
+                $data['guru'] = $this->M_guru->get($offset, $config['per_page']);
+            }
+        }
+        else
+        {
+            $data['guru'] = $this->M_guru->get($offset, $config['per_page']);
+        }
         $data['menu'] = 'guru';
         $this->load->view('templates/header',$data);
         $this->load->view('admin/guru/guru',$data);

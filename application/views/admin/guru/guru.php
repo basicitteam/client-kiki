@@ -2,8 +2,8 @@
 					<?php echo $this->session->flashdata('msg'); ?>
 					<div class="span9 well">
 						<div class="alert alert-info">
-							<form class="form-search" style="padding-top:15px" action="<?php echo site_url('guru/lihat_guru'); ?>" method="POST" enctype="multipart/form-data">
-							  <input type="text" placeholder="Input NIP" class="input-medium search-query">
+							<form class="form-search" style="padding-top:15px" action="<?php echo site_url('admin/guru/index'); ?>" method="POST" enctype="multipart/form-data">
+							  <input type="text" placeholder="Input NIP" class="input-medium search-query" name="nip">
 								<button type="submit" class="btn">Search</button>
 							
 								<div class="btn-group pull-right">
